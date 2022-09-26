@@ -82,10 +82,10 @@ namespace Lagersystem
                         Console.WriteLine("Where should the Box be stored: ");
                         index = Convert.ToInt32(Console.Read());
                         createBox();
-                        boxes
+                        // TODO: Add Box to Array
                         break;
                     case 4:
-                        
+                        // TODO: Show the Box.
                     case 6:
                         stop = true;
                         break;
