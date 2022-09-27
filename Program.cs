@@ -67,6 +67,11 @@ namespace Lagersystem
             return myBox;
         }
 
+        static void deleteBox(Box[] boxArray, int location)
+        {
+            boxArray[location] = new Box();
+        }
+
         static void Main(string[] args)
         {
             int opt, index;
@@ -83,7 +88,7 @@ namespace Lagersystem
                 opt = Convert.ToInt32(Console.ReadLine());
                 switch (opt)
                 {
-                    case 1:
+                    case 1: // Create box
                         Console.WriteLine("Where should the Box be stored: ");
                         index = Convert.ToInt32(Console.ReadLine());
                         Box userBox = createBox(index);
@@ -93,7 +98,10 @@ namespace Lagersystem
                                 boxes[i] = userBox;
                         }
                         break;
-                    case 4:
+                    case 2: // Delete box
+
+                    case 4: // show box
+                        ShowMenu:
                         Menu.Options();
                         opt = Convert.ToInt32(Console.ReadLine());
                         switch (opt)
@@ -107,10 +115,8 @@ namespace Lagersystem
                                     {
                                         showBox(box);
                                     }
-                                    else
-                                        Console.WriteLine("Box not in system");
                                 }
-                                break;
+                                goto ShowMenu;
                             case 2:
                                 Console.WriteLine("Where are we looking (location): ");
                                 index = Convert.ToInt32(Console.ReadLine());
@@ -121,10 +127,18 @@ namespace Lagersystem
                                         showBox(boxes[i]);
                                     }
                                 }
-                                break;
+                                goto ShowMenu;
                             case 3:
                                 goto MainLoop;
                         }
+                        break;
+                    case 5: // show all boxes
+                        foreach (Box box in boxes)
+                        {
+                            showBox(box);
+                        }
+                        Console.WriteLine("\nPress any Key to Continue...");
+                        Console.ReadKey();
                         break;
                     case 6:
                         stop = true;
