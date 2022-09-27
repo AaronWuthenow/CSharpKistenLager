@@ -172,7 +172,7 @@ namespace Lagersystem
                                     }
                                 Console.WriteLine("Box deleted");
                                 goto DeleteMenu;
-                            case 2: // Delete with Index
+                            case 2: // TODO: Delete with Index 
                                 goto DeleteMenu;
                             case 3:
                                 goto MainMenu;
