@@ -81,7 +81,7 @@ namespace Lagersystem
             {
                 boxes[i] = new Box(0, i);
             }
-            MainLoop:
+            MainMenu:
             while (!stop)
             {
                 Menu.MainMenu();
@@ -98,11 +98,32 @@ namespace Lagersystem
                                 boxes[i] = userBox;
                         }
                         break;
-                    case 2: // Delete box
-
+                    case 3: // Delete box
+                        DeleteMenu:
+                        Menu.DeleteMenu();
+                        opt = Convert.ToInt32(Console.ReadLine());
+                        switch (opt)
+                        {
+                            case 1: // Delete with ID
+                                Console.WriteLine("Please enter the Box ID");
+                                int id = Convert.ToInt32(Console.ReadLine());
+                                foreach (Box box in boxes)
+                                    if (box.ID == id)
+                                    {
+                                        deleteBox(boxes, box.Location);
+                                        showBox(box);
+                                    }
+                                Console.WriteLine("Box deleted");
+                                goto DeleteMenu;
+                            case 2: // Delete with Index
+                                goto DeleteMenu;
+                            case 3:
+                                goto MainMenu;
+                        }
+                        break;
                     case 4: // show box
                         ShowMenu:
-                        Menu.Options();
+                        Menu.ShowMenu();
                         opt = Convert.ToInt32(Console.ReadLine());
                         switch (opt)
                         {
@@ -129,7 +150,7 @@ namespace Lagersystem
                                 }
                                 goto ShowMenu;
                             case 3:
-                                goto MainLoop;
+                                goto MainMenu;
                         }
                         break;
                     case 5: // show all boxes

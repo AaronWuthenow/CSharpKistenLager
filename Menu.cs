@@ -21,13 +21,22 @@ namespace Lagersystem
             WriteLine("------------------------");
         }
 
-        static public void Options()
+        static public void ShowMenu()
         {
             WriteLine("------------------------");
             WriteLine("1. Search Box with ID");
             WriteLine("2. Search Box with Index");
             WriteLine("3. Back to main menu");
             WriteLine("------------------------");
+        }
+
+        static public void DeleteMenu()
+        {
+            WriteLine("-------------------");
+            WriteLine("1. Delete Box with ID");
+            WriteLine("2. Delete Box with Index");
+            WriteLine("3. Back to main menu");
+            WriteLine("-------------------");
         }
     }
 }
