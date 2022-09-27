@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Console;
+﻿using static System.Console;
 
 namespace Lagersystem
 {
-    internal class Menu
+    internal static class Menu
     {
-        static public void MainMenu()
+        public static void MainMenu()
         {
             WriteLine("------Main------");
             WriteLine("1. Create a Box");
@@ -21,7 +16,7 @@ namespace Lagersystem
             WriteLine("----------------");
         }
 
-        static public void ShowMenu()
+        public static void ShowMenu()
         {
             WriteLine("------Show------");
             WriteLine("1. Search Box with ID");
@@ -30,7 +25,7 @@ namespace Lagersystem
             WriteLine("----------------");
         }
 
-        static public void DeleteMenu()
+        public static void DeleteMenu()
         {
             WriteLine("------Delete------");
             WriteLine("1. Delete Box with ID");
@@ -39,7 +34,7 @@ namespace Lagersystem
             WriteLine("------------------");
         }
 
-        static public void ChangeMenu()
+        public static void ChangeMenu()
         {
             WriteLine("------Change------");
             WriteLine("What do you want to change");
