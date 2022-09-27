@@ -35,6 +35,11 @@ namespace Lagersystem
                 this.Volume = 0;
                 this.Location = location;
             }
+
+            public void updateVolume()
+            {
+                this.Volume = this.Height * this.Length * this.Width;
+            }
         };
 
         static void showBox(Box inBox)
@@ -71,6 +76,53 @@ namespace Lagersystem
         {
             boxArray[location] = new Box();
         }
+        static void changeBox(Box inBox, Box[] boxes)
+        {
+            ChangeMenu:
+            Box box = inBox;
+            Menu.ChangeMenu();
+            int opt = Convert.ToInt32(Console.ReadLine());
+            
+            switch (opt)
+            {
+                case 1: // ID
+                    Console.WriteLine("Please enter new ID: ");
+                    inBox.ID = Convert.ToInt32(Console.ReadLine());
+                    break;
+                case 2: // Location
+                    int temp = inBox.Location;
+                    Console.WriteLine("Please enter new Location: ");
+                    inBox.Location = Convert.ToInt32(Console.ReadLine());
+                    for (int i = 0; i < boxes.Length; i++)
+                        if (i == inBox.Location)
+                        {
+                            boxes[i] = inBox;
+                            deleteBox(boxes, temp);
+                        }
+                    break;
+                case 3: // Height
+                    Console.WriteLine("Please enter new Height: ");
+                    inBox.Height = Convert.ToInt32(Console.ReadLine());
+                    inBox.updateVolume();
+                    break;
+                case 4: // Width
+                    Console.WriteLine("Please enter new Width: ");
+                    inBox.Width = Convert.ToInt32(Console.ReadLine());
+                    inBox.updateVolume();
+                    break;
+                case 5: // Length
+                    Console.WriteLine("Please enter new Length: ");
+                    inBox.Length = Convert.ToInt32(Console.ReadLine());
+                    inBox.updateVolume();
+                    break;
+                case 6:
+                    return;
+                default:
+                    Console.WriteLine("Nothing selected");
+                    goto ChangeMenu;
+            }
+            return;
+        }
 
         static void Main(string[] args)
         {
@@ -93,10 +145,15 @@ namespace Lagersystem
                         index = Convert.ToInt32(Console.ReadLine());
                         Box userBox = createBox(index);
                         for (int i = 0; i < boxes.Length; i++)
-                        {
                             if (i == index)
                                 boxes[i] = userBox;
-                        }
+                        break;
+                    case 2: // Change box
+                        Console.WriteLine("Enter ID of Box");
+                        int boxId = Convert.ToInt32(Console.ReadLine());
+                        foreach (Box box in boxes)
+                            if(box.ID == boxId)
+                                changeBox(box, boxes);
                         break;
                     case 3: // Delete box
                         DeleteMenu:
